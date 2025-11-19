@@ -1,0 +1,93 @@
+{
+  "dynamicFields": {
+    "textBlocks": [
+      {
+        "id": "866aa065",
+        "content": "Add a catchy header",
+        "configOverride": {
+          "textSize": 32,
+          "textColor": "rgb(30, 41, 59)",
+          "align": "center"
+        }
+      },
+      {
+        "id": "87d5d75b",
+        "content": "<p>Write something amazing here. This is your space to engage, inspire, and connect with your audience.aaA</p><p></p>",
+        "configOverride": {}
+      },
+      {
+        "id": "8335aa71",
+        "content": "Write something amazing here. This is your space to engage, inspire, and connect with your audience.",
+        "configOverride": {}
+      }
+    ],
+
+    "images": [
+      {
+        "id": "f58801b4",
+        "url": "https://images.unsplash.com/photo-1734542021536-7cfb64642277?q=80&w=2071&auto=format&fit=crop",
+        "configOverride": {
+          "borderTopLeft": true,
+          "borderTopRight": true,
+          "borderBottomLeft": true,
+          "borderBottomRight": false
+        }
+      },
+      {
+        "id": "057b5ffa",
+        "url": "https://images.unsplash.com/photo-1735615479436-6a697c3e0d48?q=80&w=1932&auto=format&fit=crop",
+        "configOverride": {
+          "borderWidth": 0
+        }
+      }
+    ],
+
+    "buttons": [
+      {
+        "id": "4ee3900a",
+        "text": "Save",
+        "buttonLink": ""
+      }
+    ],
+
+    "columnWidths": [
+      {
+        "columnId": "23365f59",
+        "maxWidth": 50
+      },
+      {
+        "columnId": "db89e00a",
+        "maxWidth": 33
+      }
+    ],
+
+    "layoutTypes": [
+      "column/2-50-image-text-button",
+      "column/2-33-text/1-33-image"
+    ],
+
+    "stackColumn": true,
+
+    "dynamicIds": {
+      "rowIds": [
+        "a7c5915b",
+        "3fd198e6",
+        "44aa0bba",
+        "c34b2f51"
+      ],
+      "columnIds": [
+        "9127de5d",
+        "db89e00a",
+        "23365f59"
+      ],
+      "fieldIds": [
+        "866aa065",
+        "87d5d75b",
+        "f58801b4",
+        "8335aa71",
+        "057b5ffa",
+        "4ee3900a"
+      ]
+    }
+  }
+}

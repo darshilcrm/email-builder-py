@@ -1,0 +1,324 @@
+{
+    "field_list": [
+            {
+                "id": "397fac1c",
+                "rowConfig": {},
+                "fieldDetail": [
+                    {
+                        "id": "9238c542",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "866aa065",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "d7508f1c",
+                                        "subType": "text",
+                                        "text": "Add a catchy header",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "description": "Product launch email template"
+            },
+            {
+                "id": "a7c5915b",
+                "rowConfig": {},
+                "fieldDetail": [
+                    {
+                        "id": "9127de5d",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "87d5d75b",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "3f01b9bb",
+                                        "subType": "text",
+                                        "text": "<p>Write something amazing here... This is your space to engage, inspire, and connect with your audience.aaA</p><p></p>",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "44aa0bba",
+                "rowConfig": {
+                    "columnLayoutCategory": "column/2-50-image-text-button"
+                },
+                "fieldDetail": [
+                    {
+                        "id": "23365f59",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "057b5ffa",
+                                "icon": "image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "fieldValue": {
+                                    "img": {
+                                        "id": "9d59cea4",
+                                        "subType": "image",
+                                        "url": "https://images.unsplash.com/photo-1735615479436-6a697c3e0d48?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "0d0790dd",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "cb4c43b9",
+                                        "subType": "text",
+                                        "text": "Write something amazing here... This is your space to engage, inspire, and connect with your audience.",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "a36f3a60",
+                                "icon": "square",
+                                "label": "Button",
+                                "name": "button",
+                                "type": "button",
+                                "fieldValue": {
+                                    "button": {
+                                        "id": "e503a892",
+                                        "subType": "button",
+                                        "text": "Save",
+                                        "buttonLink": "",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "2afc722a",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "825a5ae3",
+                                "icon": "image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "fieldValue": {
+                                    "img": {
+                                        "id": "50d45ffd",
+                                        "subType": "image",
+                                        "url": "https://images.unsplash.com/photo-1734639528206-59e0864b3863?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "b9f987fe",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "09a09cc5",
+                                        "subType": "text",
+                                        "text": "Write something amazing here... This is your space to engage, inspire, and connect with your audience.",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "4ee3900a",
+                                "icon": "square",
+                                "label": "Button",
+                                "name": "button",
+                                "type": "button",
+                                "fieldValue": {
+                                    "button": {
+                                        "id": "25433e29",
+                                        "subType": "button",
+                                        "text": "Save",
+                                        "buttonLink": "",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "c34b2f51",
+                "rowConfig": {
+                    "columnLayoutCategory": "column/2-33-text/1-33-image" },
+                "fieldDetail": [
+                    {
+                        "id": "db89e00a",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "8335aa71",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "48745709",
+                                        "subType": "text",
+                                        "text": "Write something amazing here... This is your space to engage, inspire, and connect with your audience.",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "a3d0e530",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "c8babfd3",
+                                "icon": "type",
+                                "label": "Text",
+                                "name": "text",
+                                "type": "text",
+                                "fieldValue": {
+                                    "text": {
+                                        "id": "07a7562b",
+                                        "subType": "text",
+                                        "text": "Write something amazing here... This is your space to engage, inspire, and connect with your audience.",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "45768a9d",
+                                "icon": "minus",
+                                "label": "Divider",
+                                "name": "divider",
+                                "type": "divider",
+                                "fieldValue": {
+                                    "divider": {
+                                        "id": "83f6897b",
+                                        "subType": "divider",
+                                        "Configuration": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "ab3049eb",
+                                "icon": "image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "fieldValue": {
+                                    "img": {
+                                        "id": "912562d2",
+                                        "subType": "image",
+                                        "url": "https://images.unsplash.com/photo-1734542021536-7cfb64642277?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "532adcf1",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "f8b17830",
+                                "icon": "image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "fieldValue": {
+                                    "img": {
+                                        "id": "321d4d75",
+                                        "subType": "image",
+                                        "url": "https://images.unsplash.com/photo-1734542021536-7cfb64642277?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "df485947",
+                "rowConfig": {},
+                "fieldDetail": [
+                    {
+                        "id": "6a75d3c6",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "f58801b4",
+                                "icon": "image",
+                                "label": "Image",
+                                "name": "image",
+                                "type": "image",
+                                "fieldValue": {
+                                    "img": {
+                                        "id": "579b5c33",
+                                        "subType": "image",
+                                        "url": "https://images.unsplash.com/photo-1734542021536-7cfb64642277?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "3fd198e6",
+                "rowConfig": {},
+                "fieldDetail": [
+                    {
+                        "id": "afdc6499",
+                        "colConfig": {},
+                        "fieldArray": [
+                            {
+                                "id": "a8042c65",
+                                "icon": "square",
+                                "label": "Button",
+                                "name": "button",
+                                "type": "button",
+                                "fieldValue": {
+                                    "button": {
+                                        "id": "a01a07e3",
+                                        "subType": "button",
+                                        "text": "Click here",
+                                        "buttonLink": "",
+                                        "Configuration": {}
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]}
