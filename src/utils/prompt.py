@@ -434,15 +434,34 @@ MANDATORY RULES (model must obey)
 12. Do not include any px, %, or units in width , hight ,pargin , padding , etc. values — only integers.
 13. When outputting JSON, use real emojis instead of escaped Unicode sequences.
 14. use this url "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" for images
+15. In ColConfig use "max_width": 50 if there are two columns in a row
+16. In ColConfig use "max_width": 33 if there are three columns in a row
+17. In ColConfig use "max_width": 25 if there are four columns in
+18. Choose text color and size wisely according to the email theme
+19. Choose button color wisely according to the email theme
+20. leave empty in buttonLink.
+21.You must prioritize valid JSON structure over creativity.
+22 .Do not use background color in button configuration
 
-
-DYNAMIC DECISIONS (model should decide)
-- number of rows
-- number of columns per row (1-4)
-- which allowed layout to use for multi-column rows
-- appropriate ordering of fields (image, text, divider, button, etc.)
-- generating content with correct tone and purpose
+------------------------------------------------------------
+📌 MODEL MUST DECIDE DYNAMICALLY
+------------------------------------------------------------
+- number of rows (2–10)
+- number of columns per row (1–4)
+- which layout to use for multi-column rows
+- content ordering (image → header → paragraph → button → etc.)
+- text content matching tone, purpose, and target audience
+- color-friendly content choices
+- select color and all according to email type and tone
 
 END
 """
 # iPhFjyw5 
+
+
+# DYNAMIC DECISIONS (model should decide)
+# - number of rows
+# - number of columns per row (1-4)
+# - which allowed layout to use for multi-column rows
+# - appropriate ordering of fields (image, text, divider, button, etc.)
+# - generating content with correct tone and purpose

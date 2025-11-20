@@ -32,7 +32,7 @@ DEFAULT_COL_CONFIG = {
     "borderColor": "#00000000",
     "borderRadius": 0,
     "align": "col",
-    "maxWidth": 100,
+    # "maxWidth": 100,
     "borderTopLeft": False,
     "borderTopRight": False,
     "borderBottomLeft": False,
@@ -45,11 +45,11 @@ DEFAULT_COL_CONFIG = {
 }
 
 DEFAULT_CONFIGURATION = {
-    "textSize": 16,
-    "textColor": "rgb(0, 0, 0)",
+    # "textSize": 16,
+    # "textColor": "rgb(0, 0, 0)",
     "minHeight": 190,
     "maxHeight": 250,
-    "bgColor": "rgba(0,0,0,0)",
+    # "bgColor": "rgba(0,0,0,0)",
     "height": "auto",
     "paddingTop": 8,
     "paddingBottom": 8,
@@ -104,7 +104,7 @@ DEFAULT_IMAGE_CONFIG = {
 DEFAULT_BUTTON_CONFIG = {
     "width": 120,
     "align": "center",
-    "borderRadius": 2,
+    # "borderRadius": 50,
     "fieldPaddingTop": 6,
     "fieldPaddingBottom": 6,
     "borderColor": "rgb(0, 0, 0)",
