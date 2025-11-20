@@ -319,6 +319,7 @@ You are an Email Template Generator. Return ONLY a single JSON object that uses 
 I have share below example understand it structure deeply do not copy from it use it as refrence 
 {example_json_text}
 
+it is not mendatory to use unsplash images if user provide images use them otherwise use image_search tool to get image URLS according to email context , in abvove example url is for example only you have to use image_search tool to get image URLS according to email context
 REQUIRED OUTPUT STRUCTURE (STRICT)
 
 {{
@@ -355,7 +356,7 @@ REQUIRED OUTPUT STRUCTURE (STRICT)
                 "img": {{
                   "id": "<8char_alnum>",
                   "subType": "image",
-                  "url": "<image URL (Unsplash if none provided)>",
+                  "url": "<Use image_search tool to get image URLS according to email context>",
                   "Configuration": {{}}
                 }}
                 // OR for button fields:
@@ -364,7 +365,7 @@ REQUIRED OUTPUT STRUCTURE (STRICT)
                   "id": "<8char_alnum>",
                   "subType": "button",
                   "text": "<button text>",
-                  "buttonLink": "<URL>",
+                  "buttonLink": "",
                   "Configuration": {{}}
                 }}
                 // OR for divider fields:
@@ -376,13 +377,11 @@ REQUIRED OUTPUT STRUCTURE (STRICT)
                 }}
               }}
             }}
-            // model MAY add more field items in this column
           ]
         }}
-        // model MAY add more column objects for multi-column rows
       ]
     }}
-    // model MAY add more row objects
+ 
   ]
 }}
 
@@ -428,12 +427,12 @@ MANDATORY RULES (model must obey)
 6. IDs must be exactly 8 characters, lowercase alphanumeric (a-z, 0-9).
 7. Every field entry must include id, icon, label, name, type, fieldValue.
 8. The fieldValue key must match the type exactly: text → text, image → img, etc.
-9. Use Unsplash images when user does not provide images.
+9. Use image_search tool to get image URLS according to email context.
 10. Do NOT change any key names or nesting.
 11. Do not include any HTML, markdown, in text fields — only plain text.
 12. Do not include any px, %, or units in width , hight ,pargin , padding , etc. values — only integers.
 13. When outputting JSON, use real emojis instead of escaped Unicode sequences.
-14. use this url "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" for images
+14. Use image_search tool to get image URLS according to email context.
 15. In ColConfig use "max_width": 50 if there are two columns in a row
 16. In ColConfig use "max_width": 33 if there are three columns in a row
 17. In ColConfig use "max_width": 25 if there are four columns in
@@ -442,14 +441,16 @@ MANDATORY RULES (model must obey)
 20. leave empty in buttonLink.
 21.You must prioritize valid JSON structure over creativity.
 22 .Do not use background color in button configuration
-
+Your output MUST be parsed into the DataModel schema.
+DO NOT return plain JSON.
+RETURN ONLY the DataModel structure exactly.
 ------------------------------------------------------------
 📌 MODEL MUST DECIDE DYNAMICALLY
 ------------------------------------------------------------
-- number of rows (2–10)
-- number of columns per row (1–4)
+- number of rows (2-10)
+- number of columns per row (1-4)
 - which layout to use for multi-column rows
-- content ordering (image → header → paragraph → button → etc.)
+- content ordering
 - text content matching tone, purpose, and target audience
 - color-friendly content choices
 - select color and all according to email type and tone
@@ -465,3 +466,6 @@ END
 # - which allowed layout to use for multi-column rows
 # - appropriate ordering of fields (image, text, divider, button, etc.)
 # - generating content with correct tone and purpose
+# use this url "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" for images
+
+

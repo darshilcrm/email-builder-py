@@ -1,23 +1,70 @@
+from urllib import response
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.agents import create_agent
+# from langchain.agents import create_agent
 from dotenv import load_dotenv
+from langchain.tools import tool
 from src.utils.prompt import EMAIL_TEMPLATE_PROMPT 
 from src.state.states import DataModel
-# from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI
+from langgraph.prebuilt import create_react_agent
+# from langchain.agents import AgentExecutor
 load_dotenv()
+
+from serpapi import GoogleSearch
+import os
+
+
+@tool
+def image_search(query :str) -> str:
+    """
+    Uses SerpAPI to perform an image search and returns the URL of the first image result.
+    """
+    api_key = os.environ.get("SERPAPI_API_KEY")
+
+    if not api_key:
+        raise ValueError("SERPAPI_API_KEY environment variable not set.")
+
+    params = {
+        # This is the key change for image search
+        "engine": "google_images",      
+        
+        "q": query,           # Your secret API key
+        "api_key": api_key
+
+            }
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+        if "images_results" in results:
+            
+            # Get the first image from the list
+            first_image = results["images_results"][0]
+            return first_image.get('original')
+
+
+        else:
+            return ""
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+tools = [image_search]
+
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash", temperature=0.7
+    model="gemini-2.5-flash", temperature = 1
 )
 # llm = ChatOpenAI(model = "gpt-5-nano")
 llm_structure = llm.with_structured_output(DataModel)
-agent = create_agent(
-    model=llm,
-    system_prompt=EMAIL_TEMPLATE_PROMPT,
-    debug=True , 
-    )
 
+# agent = create_react_agent(
+#     model=llm,
+#     prompt=EMAIL_TEMPLATE_PROMPT,
+#     debug=True ,
+#     tools=[image_search],
+#     response_format=DataModel
+#     )
 
-
+agent = create_react_agent(model = llm, tools = tools, prompt = EMAIL_TEMPLATE_PROMPT , response_format=DataModel)
+# agent_executor = AgentExecutor(agent=agent, tools=tools)
 # (1) 2 colomn layout
 # - column/2-50-image-text-button (Means both columns have image, text and button)
 # - column/1-50-image/1-50-text-button (Means first column has image, second column has text and button)
