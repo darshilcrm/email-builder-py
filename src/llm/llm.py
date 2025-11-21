@@ -14,7 +14,7 @@ load_dotenv()
 
 tools = [image_search]
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature = 0.8)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature = 1)
 # llm = ChatOpenAI(model = "o4-mini" , temperature = 1)
 llm_structure = llm.with_structured_output(DataModel)
 
@@ -26,7 +26,7 @@ llm_structure = llm.with_structured_output(DataModel)
 #     response_format=DataModel
 #     )
 
-agent = create_react_agent(model = llm, tools = tools, prompt = EMAIL_TEMPLATE_PROMPT , response_format=DataModel)
+agent = create_react_agent(model = llm, tools = tools, prompt = EMAIL_TEMPLATE_PROMPT , response_format=DataModel , debug = True)
 # agent_executor = AgentExecutor(agent=agent, tools=tools)
 # (1) 2 colomn layout
 # - column/2-50-image-text-button (Means both columns have image, text and button)

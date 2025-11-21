@@ -103,7 +103,7 @@ DEFAULT_IMAGE_CONFIG = {
 }
 
 DEFAULT_BUTTON_CONFIG = {
-    "width": 120,
+    # "width": 120,
     "align": "center",
     # "borderRadius": 50,
     "fieldPaddingTop": 6,
