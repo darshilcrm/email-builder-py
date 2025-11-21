@@ -17,7 +17,8 @@ DEFAULT_ROW_CONFIG = {
     "borderTop": False,
     "borderRight": False,
     "borderLeft": False,
-    "borderBottom": False
+    "borderBottom": False,
+    "stackColumn": True
 }
 
 DEFAULT_COL_CONFIG = {

@@ -68,14 +68,12 @@ class FieldDetail(BaseConfigModel):
 class RowConfig(BaseConfigModel):
     visibility: Optional[str] = None
     column_layout_category: Optional[str] = None
-    stack_column: Optional[bool] = None
     background_color: str = Field(description="Background color in RGBA", default="rgba(0,0,0,0)") 
 
 class Row(BaseConfigModel):
     id: str
     row_config: RowConfig
     field_detail: List[FieldDetail]
-    stack_column: Optional[bool] = None
 
 class DataModel(BaseModel):
     field_list: List[Row]

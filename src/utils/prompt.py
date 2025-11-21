@@ -420,8 +420,8 @@ MANDATORY RULES (model must obey)
 1. Output must be valid JSON only — nothing else.
 2. Every row must have 1 or more columns. Every column must have 1 or more fields.
 3. If a row has more than one column, the rowConfig MUST include:
-     "columnLayoutCategory": "<one allowed layout string>"
-   If a row has exactly one column, rowConfig MUST NOT include "columnLayoutCategory".
+  "columnLayoutCategory": "<one allowed layout string>"
+  If a row has exactly one column, rowConfig MUST NOT include "columnLayoutCategory".
 4. For multi-column rows, colConfig MUST include numeric widths that sum to exactly 100.
 5. Do not invent layout strings — only use the allowed ones above.
 6. IDs must be exactly 8 characters, lowercase alphanumeric (a-z, 0-9).
@@ -429,7 +429,6 @@ MANDATORY RULES (model must obey)
 8. The fieldValue key must match the type exactly: text → text, image → img, etc.
 9. Use image_search tool to get image URLS according to email context.
 10. Do NOT change any key names or nesting.
-11. Do not include any HTML, markdown, in text fields — only plain text.
 12. Do not include any px, %, or units in width , hight ,pargin , padding , etc. values — only integers.
 13. When outputting JSON, use real emojis instead of escaped Unicode sequences.
 14. Use image_search tool to get image URLS according to email context.
@@ -440,7 +439,8 @@ MANDATORY RULES (model must obey)
 19. Choose button color wisely according to the email theme
 20. leave empty in buttonLink.
 21.You must prioritize valid JSON structure over creativity.
-22 .Do not use background color in button configuration
+22. Do not use background color in button configuration
+23. You must chose "columnLayoutCategory" from defined LAYOUTS
 Your output MUST be parsed into the DataModel schema.
 DO NOT return plain JSON.
 RETURN ONLY the DataModel structure exactly.
