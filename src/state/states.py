@@ -18,7 +18,7 @@ class Configuration(BaseConfigModel):
     button_color : str = Field(description="Color of the button in RGB or HEX")
     bg_color: Optional[str] = Field(description="Background color in RGBA or HEX", default="rgba(0,0,0,0)")
     border_radius: Optional[int] = Field(description="Border radius in pixels use this in button only")
-   
+
 # --- Field Values ---
 class BaseFieldValue(BaseConfigModel):
     id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
@@ -34,7 +34,6 @@ class ImageFieldValue(BaseFieldValue):
 
 class ButtonFieldValue(BaseFieldValue):
     text: str
-    button_link: str = ""
 
 class DividerFieldValue(BaseFieldValue):
     pass
@@ -66,7 +65,7 @@ class FieldDetail(BaseConfigModel):
 class RowConfig(BaseConfigModel):
     visibility: Optional[str] = None
     column_layout_category: Optional[str] = None
-    background_color: str = Field(description="Background color in RGBA", default="rgba(0,0,0,0)") 
+    background_color: str = Field(description="Background color in RGBA You can choose any color of background According to the email template's UI", default="rgba(255,255,255,1)") 
 
 class Row(BaseConfigModel):
     id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
@@ -75,3 +74,5 @@ class Row(BaseConfigModel):
 
 class DataModel(BaseModel):
     field_list: List[Row]
+    name: str = Field(description="Name of the email Template")
+    subject: str = Field(description="Subject of the email")

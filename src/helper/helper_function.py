@@ -1,8 +1,8 @@
 import copy
 from src.utils.default_values import *
-from serpapi.google_search import GoogleSearch
 import os
 from langchain.tools import tool
+import requests
 
 def apply_default_config_to_dynamic_email(email_json):
     """
@@ -72,32 +72,10 @@ def image_search(query :str) -> str:
     """
     Uses SerpAPI to perform an image search and returns the URL of the first image result.
     """
-    api_key = os.environ.get("SERPAPI_API_KEY")
+    access_key = os.getenv("ACCESS_key")
 
-    if not api_key:
-        raise ValueError("SERPAPI_API_KEY environment variable not set.")
+    response = requests.get(f"https://api.unsplash.com/search/photos?page=1&query={query}&client_id={access_key}")
 
-    params = {
-        # This is the key change for image search
-        "engine": "google_images",      
-        "tbs": "il:cl",
-        "q": query, 
-        "gl" : "in",       
-        "api_key": api_key
+    result = response.json()
 
-            }
-    try:
-        search = GoogleSearch(params)
-        results = search.get_dict()
-        if "images_results" in results:
-            
-            # Get the first image from the list
-            first_image = results["images_results"][0]
-            return first_image.get('original')
-
-
-        else:
-            return ""
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    return result['results'][0]["urls"]["regular"]

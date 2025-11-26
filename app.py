@@ -1,4 +1,5 @@
 from fastapi import FastAPI , Body
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from src.utils.prompt import *
 from src.llm.llm import llm , agent , llm_structure
@@ -32,18 +33,25 @@ def generate_email(data: dict):
 
     return final_data
 
+class GenerateRequest(BaseModel):
+    emailType: str
+    purpose: str
+    tone: str
+    targetAudience: str
+    keyPoints: str
+    additionalDetails: str
 
 @app.post("/generate")
-async def generate(data: dict = Body(...)):
+async def generate(request: GenerateRequest):
     query = {}
-    query['emailType'] = data['emailType'] 
-    query['purpose'] = data['purpose']
-    query['tone'] = data['tone']
-    query['targetAudience'] = data['targetAudience']
-    query['keyPoints'] = data['keyPoints']
-    query['additionalDetails'] = data['additionalDetails']
+    query['emailType'] = request.emailType 
+    query['purpose'] = request.purpose
+    query['tone'] = request.tone
+    query['targetAudience'] = request.targetAudience
+    query['keyPoints'] = request.keyPoints
+    query['additionalDetails'] = request.additionalDetails
     print(query)
 
-    content= generate_email(data)
+    content= generate_email(request.model_dump())
     return JSONResponse(content=content, status_code=200)
 

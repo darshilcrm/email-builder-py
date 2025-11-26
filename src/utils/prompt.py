@@ -441,6 +441,8 @@ MANDATORY RULES (model must obey)
 22. Do not use background color in button configuration
 23. You must chose "columnLayoutCategory" from defined LAYOUTS
 24.text_size of any text must be not grater than 20
+25. Never do same color of button and button text
+26. If same type of images used then use different query each time in image_search tool
 Your output MUST be parsed into the DataModel schema.
 DO NOT return plain JSON.
 RETURN ONLY the DataModel structure exactly.

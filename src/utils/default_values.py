@@ -111,6 +111,7 @@ DEFAULT_BUTTON_CONFIG = {
     "borderColor": "rgb(0, 0, 0)",
     "borderWidth": 1,
     "buttonColor": "rgb(255, 255, 255)",
+    "buttonLink" : ""
 
 }
 
