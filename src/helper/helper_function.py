@@ -70,7 +70,7 @@ def clean_model_json(raw_text: str) -> str:
 @tool
 def image_search(query :str) -> str:
     """
-    Uses SerpAPI to perform an image search and returns the URL of the first image result.
+    Uses Unsplash API to perform an image search and returns the URL of the first image result.
     """
     access_key = os.getenv("ACCESS_key")
 
