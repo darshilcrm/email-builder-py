@@ -1,499 +1,255 @@
-# from enum import Enum
+from enum import Enum
 
 EXAMPLE_JSON_PATH = "example.json"
 
 with open(EXAMPLE_JSON_PATH, "r", encoding="utf-8") as f:
     example_json_text = f.read()
-# class PromptList(Enum):
+class PromptList(Enum):
+    EMAIL_TEMPLATE_PROMPT = ("""You are an Email Template Generator. Return ONLY a single JSON object that uses the exact structure   below. Do NOT add, remove, rename, or simplify keys. No markdown, no explanation, only JSON.
 
+      I have share below example understand it structure deeply do not copy from it use it as refrence 
+      {example_json_text}
 
-# EMAIL_TEMPLATE_PROMPT = """You must generate a fully dynamic email template in the EXACT STRUCTURE below.
-# You MUST allow multiple columns per row.
+      it is not mendatory to use unsplash images if user provide images use them otherwise use image_search tool to get image URLS according to email context , in abvove example url is for example only you have to use image_search tool to get image URLS according to email context
+      REQUIRED OUTPUT STRUCTURE (STRICT)
 
-# You have to chouse layouts per row from below:
-
-# Layouts:
-
-# (1) 2 colomn layout
-# - column/2-50-image-text-button (Means both columns have image, text and button)
-# - column/1-50-image/1-50-text-button (Means first column has image, second column has text and button)
-# - column/1-50-text-button/1-50-image (Means first column has text and button, second column has image)
-# - column/1-50-image/1-50-text   (Means first column has image, second column has text)
-# - column/1-50-text/1-50-image (Means first column has text, second column has image)
-# - column/2-50-image (Means both columns have image)
-# - column/2-50-button (Means both columns have button)
-
-# (2) 3 Column layout
-# - column/3-33-image-text-button (Means all three columns have image, text and button)
-# - column/3-33-image-text (Means all three columns have image and text)
-# - column/3-33-image (Means all three columns have image)
-# - column/1-33-image/2-33-text (First column has image, second and third columns have text)
-# - column/2-33-text/1-33-image (First and second columns have text, third column has image)
-# - column/3-33-text (Means all three columns have text)
-# - column/3-33-button  (Means all three columns have button)
-
-# (3) 4 column layout:
-# - column/4-25-image-text-button (Means all four columns have image, text and button)
-# - column/4-25-image-text (Means all four columns have image and text) 
-# - column/4-25-image (Means all four columns have image)
-# - column/1-25-image/1-25-text/1-25-image/1-25-text (Means first column has image, second column has text, third column has image, fourth column has text)
-# - column/1-25-text/1-25-image/1-25-text/1-25-image (Means first column has text, second column has image, third column has text, fourth column has image)
-# - column/1-25-image/3-25-text (Means first column has image, rest three columns have text)
-# - column/4-25-text (Means all four columns have text)
-# - column/4-25-button (Means all four columns have button)
-
-# ====================================================
-# 📌 REQUIRED OUTPUT STRUCTURE (UPDATED — MULTI-COLUMN)
-# ====================================================
-
-# {
-#   "field_list": [
-#     {
-#       "id": "<unique>",
-#       "rowConfig": {"columnLayoutCategory" : <Chose from above layouts for multi column layout> },
-#       "fieldDetail": [
-#         {
-#           "id": "<unique>",
-#           "colConfig": {},
-#           "fieldArray": [
-#             {
-#               "id": "<unique>",
-#               "icon": "<icon>",
-#               "label": "<Text | Image | Button | Divider>",
-#               "name": "<text | image | button | divider>",
-#               "type": "<text | image | button | divider>",
-#               "fieldValue": {
-#                 "text": {
-#                   "id": "<unique>",
-#                   "subType": "text",
-#                   "text": "<html or plain text>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "img": {
-#                   "id": "<unique>",
-#                   "subType": "image",
-#                   "url": "<image URL>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "button": {
-#                   "id": "<unique>",
-#                   "subType": "button",
-#                   "text": "<button text>",
-#                   "buttonLink": "<URL>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "divider": {
-#                   "id": "<unique>",
-#                   "subType": "divider",
-#                   "Configuration": {}
-#                 }
-#               }
-#             }
-#             , // The model MAY add more columns here
-#           ]
-#         }
-        
-#       ]
-#     }
-#     , // The model MAY add more rows here
-#   ]
-# }
-
-# ====================================================
-# 📌 RULES THE MODEL MUST FOLLOW
-# ====================================================
-
-# 1. The structure above is STRICT and MUST be followed.
-# 2. Every row MUST have **1 or more columns**.
-# 3. Every column MUST have **1 or more fields**.
-# 4. Multiple columns MUST be allowed inside fieldDetail.
-# 5. The model must dynamically decide:
-#    - number of rows
-#    - number of columns per row (1, 2, 3, etc.)
-#    - field order and content
-# 6. Use only correct fieldValue keys:
-#    - text → text
-#    - image → img
-#    - button → button
-#    - divider → divider
-# 7. Use Unsplash URLs if user does not give images.
-# 8. For multi-column layouts: column widths MUST sum to 100%.
-# 9. In id field you have to put 8 character unique string including numerical and small alphabets.
-# 10. All IDs (row, column, field, content) MUST be unique strings.
-
-# ====================================================
-# 📌 DO NOT:
-# ====================================================
-# - Change structure names
-# - Remove required keys
-# - Put markdown or comments in output
-# - Collapse fieldDetail into one column only
-
-# ====================================================
-# END OF RULES
-# ====================================================
-# """
-
-
-# EMAIL_TEMPLATE_PROMPT = """
-
-
-# You must generate a fully dynamic email template in the EXACT STRUCTURE below.
-# You MUST allow multiple columns per row.
-
-# ====================================================
-# 📌 LAYOUTS — YOU MUST CHOOSE ONLY FROM THESE
-# ====================================================
-
-# (1) 2 colomn layout
-# - column/2-50-image-text-button (Means both columns have image, text and button)
-# - column/1-50-image/1-50-text-button (Means first column has image, second column has text and button)
-# - column/1-50-text-button/1-50-image (Means first column has text and button, second column has image)
-# - column/1-50-image/1-50-text   (Means first column has image, second column has text)
-# - column/1-50-text/1-50-image (Means first column has text, second column has image)
-# - column/2-50-image (Means both columns have image)
-# - column/2-50-button (Means both columns have button)
-
-# (2) 3 Column layout
-# - column/3-33-image-text-button (Means all three columns have image, text and button)
-# - column/3-33-image-text (Means all three columns have image and text)
-# - column/3-33-image (Means all three columns have image)
-# - column/1-33-image/2-33-text (First column has image, second and third columns have text)
-# - column/2-33-text/1-33-image (First and second columns have text, third column has image)
-# - column/3-33-text (Means all three columns have text)
-# - column/3-33-button  (Means all three columns have button)
-
-# (3) 4 column layout:
-# - column/4-25-image-text-button (Means all four columns have image, text and button)
-# - column/4-25-image-text (Means all four columns have image and text) 
-# - column/4-25-image (Means all four columns have image)
-# - column/1-25-image/1-25-text/1-25-image/1-25-text (Means first column has image, second column has text, third column has image, fourth column has text)
-# - column/1-25-text/1-25-image/1-25-text/1-25-image (Means first column has text, second column has image, third column has text, fourth column has image)
-# - column/1-25-image/3-25-text (Means first column has image, rest three columns have text)
-# - column/4-25-text (Means all four columns have text)
-# - column/4-25-button (Means all four columns have button)
-
-# ====================================================
-# 📌 IMPORTANT LAYOUT RULE (FIXED)
-# ====================================================
-
-# - If a row has **more than one column**, you MUST include:
-  
-#   "rowConfig": { "columnLayoutCategory": "<one layout from above>" }
-
-# - If a row has **only one column**, you MUST use:
-  
-#   "rowConfig": {}
-
-#   (Do NOT include columnLayoutCategory for single-column rows.)
-
-# ====================================================
-# 📌 REQUIRED OUTPUT STRUCTURE (CRITICAL)
-# ====================================================
-
-# {
-#   "field_list": [
-#     {
-#       "id": "<8-char unique>",
-#       "rowConfig": { 
-#           "columnLayoutCategory": "<ONLY for multi-column rows>" 
-#       },
-#       "fieldDetail": [
-#         {
-#           "id": "<8-char unique>",
-#           "colConfig": {},
-#           "fieldArray": [
-#             {
-#               "id": "<8-char unique>",
-#               "icon": "<icon>",
-#               "label": "<Text | Image | Button | Divider>",
-#               "name": "<text | image | button | divider>",
-#               "type": "<text | image | button | divider>",
-
-#               "fieldValue": {
-#                 "text": {
-#                   "id": "<8-char unique>",
-#                   "subType": "text",
-#                   "text": "<html or plain text>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "img": {
-#                   "id": "<8-char unique>",
-#                   "subType": "image",
-#                   "url": "<image URL>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "button": {
-#                   "id": "<8-char unique>",
-#                   "subType": "button",
-#                   "text": "<button text>",
-#                   "buttonLink": "<URL>",
-#                   "Configuration": {}
-#                 }
-#                 OR
-#                 "divider": {
-#                   "id": "<8-char unique>",
-#                   "subType": "divider",
-#                   "Configuration": {}
-#                 }
-#               }
-#             }
-#             // The model MAY add more fields in this column
-#           ]
-#         }
-#         // The model MAY add more columns inside fieldDetail
-#       ]
-#     }
-#     // The model MAY add more rows
-#   ]
-# }
-
-# ====================================================
-# 📌 STRICT RULES THE MODEL MUST FOLLOW
-# ====================================================
-
-# 1. Every row MUST have **1 or more columns**.
-# 2. Every column MUST have **1 or more fields**.
-# 3. When a row has 2/3/4 columns, you MUST select a layout from the list.
-# 4. When a row has 1 column, DO NOT include columnLayoutCategory.
-# 5. Every “fieldArray” item MUST contain:
-#    - id  
-#    - icon  
-#    - label  
-#    - name  
-#    - type  
-#    - fieldValue  
-# 6. The correct fieldValue key MUST be EXACT:
-#    - text    → "text"
-#    - image   → "img"
-#    - button  → "button"
-#    - divider → "divider"
-# 7. fieldValue object MUST contain:
-#    - id  
-#    - subType (text/image/button/divider)
-#    - Configuration: {} (empty)
-# 8. For multi-column rows: column widths MUST total 100%.
-# 9. Use Unsplash URLs if user does not provide image URLs.
-# 10. All IDs for rows, columns, fields, and content MUST be:
-#     - EXACTLY 8 characters  
-#     - lowercase alphabets + numbers only  
-#     - unique across the structure  
-
-# ====================================================
-# 📌 YOU MUST DYNAMICALLY DECIDE
-# ====================================================
-
-# - Number of rows  
-# - Number of columns per row (1/2/3/4)  
-# - Correct layout for multi-column rows  
-# - Field order (image → text → content → button etc.)  
-# - All text content  
-# - All image URLs  
-# - All button texts and URLs  
-
-# ====================================================
-# 📌 YOU MUST NOT
-# ====================================================
-
-# - Use any layout not listed above  
-# - Add unknown keys  
-# - Change required key names  
-# - Add markdown or explanation  
-# - Collapse everything into one column  
-# - Use “fieldValue”: { "image": … } — MUST be "img"  
-
-# ====================================================
-# END OF RULES
-# ====================================================
-
-# """
-
-EMAIL_TEMPLATE_PROMPT = f"""
-You are an Email Template Generator. Return ONLY a single JSON object that uses the exact structure below. Do NOT add, remove, rename, or simplify keys. No markdown, no explanation, only JSON.
-
-I have share below example understand it structure deeply do not copy from it use it as refrence 
-{example_json_text}
-
-it is not mendatory to use unsplash images if user provide images use them otherwise use image_search tool to get image URLS according to email context , in abvove example url is for example only you have to use image_search tool to get image URLS according to email context
-REQUIRED OUTPUT STRUCTURE (STRICT)
-
-{{
-  "field_list": [
-    {{
-      "id": "<8char_alnum>",
-      "rowConfig": {{  
-         // ONLY include "columnLayoutCategory" when this row has more than 1 column
-         // e.g. "columnLayoutCategory": "column/2-50-image-text-button"
-      }},
-      "fieldDetail": [
-        {{
-          "id": "<8char_alnum>",
-          "colConfig": {{   
-             // for multi-column rows include "width": <int 1-100>
-          }},
-          "fieldArray": [
-            {{
-              "id": "<8char_alnum>",
-              "icon": "<icon>",
-              "label": "<Text | Image | Button | Divider>",
-              "name": "<text | image | button | divider>",
-              "type": "<text | image | button | divider>",
-              "fieldValue": {{
-                // For text fields:
-                "text": {{
-                  "id": "<8char_alnum>",
-                  "subType": "text",
-                  "text": "<html or plain text>",
-                  "Configuration": {{}}
-                }}
-                // OR for image fields:
-                OR
-                "img": {{
-                  "id": "<8char_alnum>",
-                  "subType": "image",
-                  "url": "<Use image_search tool to get image URLS according to email context>",
-                  "Configuration": {{}}
-                }}
-                // OR for button fields:
-                OR
-                "button": {{
-                  "id": "<8char_alnum>",
-                  "subType": "button",
-                  "text": "<button text>",
-                  "buttonLink": "",
-                  "Configuration": {{}}
-                }}
-                // OR for divider fields:
-                OR
-                "divider": {{
-                  "id": "<8char_alnum>",
-                  "subType": "divider",
-                  "Configuration": {{}}
-                }}
+      {{
+        "field_list": [
+          {{
+            "id": "<8char_alnum>",
+            "rowConfig": {{  
+              // ONLY include "columnLayoutCategory" when this row has more than 1 column
+              // e.g. "columnLayoutCategory": "column/2-50-image-text-button"
+            }},
+            "fieldDetail": [
+              {{
+                "id": "<8char_alnum>",
+                "colConfig": {{   
+                  // for multi-column rows include "width": <int 1-100>
+                }},
+                "fieldArray": [
+                  {{
+                    "id": "<8char_alnum>",
+                    "icon": "<icon>",
+                    "label": "<Text | Image | Button | Divider>",
+                    "name": "<text | image | button | divider>",
+                    "type": "<text | image | button | divider>",
+                    "fieldValue": {{
+                      // For text fields:
+                      "text": {{
+                        "id": "<8char_alnum>",
+                        "subType": "text",
+                        "text": "<html or plain text>",
+                        "Configuration": {{}}
+                      }}
+                      // OR for image fields:
+                      OR
+                      "img": {{
+                        "id": "<8char_alnum>",
+                        "subType": "image",
+                        "url": "<Use image_search tool to get image URLS according to email context>",
+                        "Configuration": {{}}
+                      }}
+                      // OR for button fields:
+                      OR
+                      "button": {{
+                        "id": "<8char_alnum>",
+                        "subType": "button",
+                        "text": "<button text>",
+                        "buttonLink": "",
+                        "Configuration": {{}}
+                      }}
+                      // OR for divider fields:
+                      OR
+                      "divider": {{
+                        "id": "<8char_alnum>",
+                        "subType": "divider",
+                        "Configuration": {{}}
+                      }}
+                    }}
+                  }}
+                ]
               }}
-            }}
-          ]
-        }}
-      ]
-    }}
-  ]
-}}
+            ]
+          }}
+        ]
+      }}
 
-LAYOUTS (allowed — model MUST pick per multi-column row from exactly these strings)
+      LAYOUTS (allowed — model MUST pick per multi-column row from exactly these strings)
 
-2-column choices:
-- column/2-50-image-text-button
-- column/1-50-image/1-50-text-button
-- column/1-50-text-button/1-50-image
-- column/1-50-image/1-50-text
-- column/1-50-text/1-50-image
-- column/2-50-image
-- column/2-50-button
-- column/2-50-text
+      2-column choices:
+      - column/2-50-image-text-button
+      - column/1-50-image/1-50-text-button
+      - column/1-50-text-button/1-50-image
+      - column/1-50-image/1-50-text
+      - column/1-50-text/1-50-image
+      - column/2-50-image
+      - column/2-50-button
+      - column/2-50-text
 
-3-column choices:
-- column/3-33-image-text-button
-- column/3-33-image-text
-- column/3-33-image
-- column/1-33-image/2-33-text
-- column/2-33-text/1-33-image
-- column/3-33-text
-- column/3-33-button
+      3-column choices:
+      - column/3-33-image-text-button
+      - column/3-33-image-text
+      - column/3-33-image
+      - column/1-33-image/2-33-text
+      - column/2-33-text/1-33-image
+      - column/3-33-text
+      - column/3-33-button
 
-4-column choices:
-- column/4-25-image-text-button
-- column/4-25-image-text
-- column/4-25-image
-- column/1-25-image/1-25-text/1-25-image/1-25-text
-- column/1-25-text/1-25-image/1-25-text/1-25-image
-- column/1-25-image/3-25-text
-- column/4-25-text
-- column/4-25-button
+      4-column choices:
+      - column/4-25-image-text-button
+      - column/4-25-image-text
+      - column/4-25-image
+      - column/1-25-image/1-25-text/1-25-image/1-25-text
+      - column/1-25-text/1-25-image/1-25-text/1-25-image
+      - column/1-25-image/3-25-text
+      - column/4-25-text
+      - column/4-25-button
 
-MANDATORY RULES (model must obey)
-1. Output must be valid JSON only — nothing else.
-2. Every row must have 1 or more columns. Every column must have 1 or more fields.
-3. If a row has more than one column, the rowConfig MUST include:
-  "columnLayoutCategory": "<one allowed layout string>"
-  If a row has exactly one column, rowConfig MUST NOT include "columnLayoutCategory".
-4. For multi-column rows, colConfig MUST include numeric widths that sum to exactly 100.
-5. Do not invent layout strings — only use the allowed ones above.
-6. IDs must be exactly 8 characters, lowercase alphanumeric (a-z, 0-9).
-7. Every field entry must include id, icon, label, name, type, fieldValue.
-8. The fieldValue key must match the type exactly: text → text, image → img, etc.
-9. Use image_search tool to get image URLS according to email context.
-10. Do NOT change any key names or nesting.
-12. Do not include any px, %, or units in width , hight ,pargin , padding , etc. values — only integers.
-13. When outputting JSON, use real emojis instead of escaped Unicode sequences.
-14. Use image_search tool to get image URLS according to email context.
-15. In ColConfig use "max_width": 50 if there are two columns in a row
-16. In ColConfig use "max_width": 33 if there are three columns in a row
-17. In ColConfig use "max_width": 25 if there are four columns in
-18. Choose text color and size wisely according to the email theme
-19. Choose button color wisely according to the email theme
-20. leave empty in buttonLink.
-21.You must prioritize valid JSON structure over creativity.
-22. Do not use background color in button configuration
-23. You must chose "columnLayoutCategory" from defined LAYOUTS
-24.text_size of any text must be not grater than 18
-25. Never do same color of button and button text
-26. If same type of images used then use different query each time in image_search tool
+      MANDATORY RULES (model must obey)
+      1. Output must be valid JSON only — nothing else.
+      2. Every row must have 1 or more columns. Every column must have 1 or more fields.
+      3. If a row has more than one column, the rowConfig MUST include:
+        "columnLayoutCategory": "<one allowed layout string>"
+        If a row has exactly one column, rowConfig MUST NOT include "columnLayoutCategory".
+      4. For multi-column rows, colConfig MUST include numeric widths that sum to exactly 100.
+      5. Do not invent layout strings — only use the allowed ones above.
+      6. IDs must be exactly 8 characters, lowercase alphanumeric (a-z, 0-9).
+      7. Every field entry must include id, icon, label, name, type, fieldValue.
+      8. The fieldValue key must match the type exactly: text → text, image → img, etc.
+      9. Use image_search tool to get image URLS according to email context.
+      10. Do NOT change any key names or nesting.
+      12. Do not include any px, %, or units in width , hight ,pargin , padding , etc. values — only integers.
+      13. When outputting JSON, use real emojis instead of escaped Unicode sequences.
+      14. Use image_search tool to get image URLS according to email context.
+      15. In ColConfig use "max_width": 50 if there are two columns in a row
+      16. In ColConfig use "max_width": 33 if there are three columns in a row
+      17. In ColConfig use "max_width": 25 if there are four columns in
+      18. Choose text color and size wisely according to the email theme
+      19. Choose button color wisely according to the email theme
+      20. leave empty in buttonLink.
+      21.You must prioritize valid JSON structure over creativity.
+      22. Do not use background color in button configuration
+      23. You must chose "columnLayoutCategory" from defined LAYOUTS
+      24.text_size of any text must be not grater than 18
+      25. Never do same color of button and button text
+      26. If same type of images used then use different query each time in image_search tool
 
-Your output MUST be parsed into the DataModel schema.
-DO NOT return plain JSON.
-RETURN ONLY the DataModel structure exactly.
-------------------------------------------------------------
-📌 MODEL MUST DECIDE DYNAMICALLY
-------------------------------------------------------------
-- number of rows (2-10)
-- number of columns per row (1-4)
-- which layout to use for multi-column rows
-- content ordering
-- text content matching tone, purpose, and target audience
-- color-friendly content choices
-- select color and all according to email type and tone
+      Your output MUST be parsed into the DataModel schema.
+      DO NOT return plain JSON.
+      RETURN ONLY the DataModel structure exactly.
+      ------------------------------------------------------------
+      📌 MODEL MUST DECIDE DYNAMICALLY
+      ------------------------------------------------------------
+      - number of rows (2-10)
+      - number of columns per row (1-4)
+      - which layout to use for multi-column rows
+      - content ordering
+      - text content matching tone, purpose, and target audience
+      - color-friendly content choices
+      - select color and all according to email type and tone
 
-END
-"""
-# iPhFjyw5 
+      END""" ) 
 
 
-# DYNAMIC DECISIONS (model should decide)
-# - number of rows
-# - number of columns per row (1-4)
-# - which allowed layout to use for multi-column rows
-# - appropriate ordering of fields (image, text, divider, button, etc.)
-# - generating content with correct tone and purpose
-# use this url "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" for images
+
+    HTML_EMAIL_TEMPLATE_PROMPT = ("""You are an Email Template Generator.  
+Generate a complete, fully designed email template STRICTLY using the structure below.  
+You MUST follow the exact nesting pattern:
+
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <div>  <!-- ROW -->
+                    <table>
+                        <tr>
+                            <td>
+                                <div> <!-- COLUMN -->
+                                    <tr>
+                                        <td>
+                                            <div> <!-- FIELD -->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </div> <!-- END COLUMN -->
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!-- END ROW -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+==========================================================
+📌 STRICT STRUCTURE RULES (MUST FOLLOW)
+==========================================================
+
+1. The email MUST be constructed as:
+   table > tbody > tr > td > div (ROW)
+      inside ROW → another table > tr > td > div (COLUMN)
+          inside COLUMN → multiple <tr><td><div> FIELD </div></td></tr>
+
+2. You MUST output multiple rows.  
+   Each row MUST contain one or more columns.  
+   Each column MUST contain one or more fields.
+
+3. A FIELD is ANY content:
+   - text block
+   - image
+   - heading
+   - paragraph
+   - button (using <a> styled as button)
+   - divider line (<hr> inside <div>)
+   - spacing (<div style="height:20px">)
+
+4. ALL CSS MUST be inline.  
+   No <style> tags, no classes, no external CSS.
+
+5. DO NOT use placeholders like “Your Company”.  
+   Write complete, real content based on the prompt purpose.
+
+6. The HTML must be email-safe:
+   - use tables for layout  
+   - only inline CSS  
+   - no flex/grid  
+   - no JavaScript  
+   - no SVG  
+
+7. Images must be valid URLs (prefer Unsplash) Use image_search tool to get image URLS according to email context.  
+   Buttons must be <a> with inline background color, padding, and border-radius.
+  Use eimage_search tool to get image URLS according to email context.  
+8. The structure must be visually appealing, colorful, and well-organized.
 
 
-HTML_EMAIL_TEMPLATE_PROMPT = """  
+==========================================================
+📌 TONE & GENERATION
+==========================================================
 
-Role: Act as an expert Email Marketing Developer and UI Designer.
+- Write naturally without placeholders.
+- Use professional, warm copywriting.
+- Use color combinations that are readable and eye-catching.
+- Use padding, spacing, and margins through inline CSS.
+- Fit content to the prompt goal (welcome email, promo, newsletter, etc.)
 
-Objective: Create a comprehensive, responsive HTML email template suitable for a newsletter or product announcement.
+==========================================================
+📌 YOUR TASK
+==========================================================
 
-Critical Technical Constraints (Must Follow):
+Using the rules above, generate a complete email template in pure HTML.
 
-Inline CSS Only: All styling must be applied directly to HTML elements using the style="" attribute. Do not use internal <style> blocks in the <head> or external CSS files, as these are often stripped by email clients like Gmail and Outlook.
-Table-Based Layout: Use nested HTML <table> elements for the structural layout to ensure maximum compatibility with legacy clients (like Outlook on Windows).
-Accessibility: Add role="presentation" to all layout tables to ensure screen readers treat them as layout, not data.
-Responsiveness: * The container should have a maximum width of 600px.
+Follow the exact structure:
+ROW → COLUMN → FIELD  
+represented as nested:
+<table> → <tr> → <td> → <div>
 
-On screens smaller than 600px, the content should resize to 100% width.
+Return ONLY the HTML.  
+No markdown.  
+No explanation.
 
-No JavaScript: Do not use any <script> tags.
 
-Design Structure:
-There is no design structure you can use which you want  but it must be creative and beautiful
 
-Output:
-Provide the complete, raw HTML code in a single code block.
 
 INSTRUCTION
 
@@ -503,20 +259,7 @@ INSTRUCTION
 4. You may use gradient color where you want to use
 5. Output must be very beautiful and professional
 6. Use real emojis instead of escaped Unicode sequences.
-7. Add id in every element
+7. Add id in every row column and field
 
-
-
-"""
-
-
-# === USER PROMPT ===
-# Now generate an email for the following user brief (replace placeholders with actual copy and links, but still keep placeholders in curly braces so they can be programmatically replaced later):
-
-# Email Type: "Welcome Email"
-# Purpose: "Welcome new subscribers to our platform and offer a discount"
-# Tone: "Professional"
-# Target Audience: "New subscribers"
-# Key Points: ["Welcome message", "Discount code: WELCOME20", "How to redeem"]
-# Primary CTA text: "Claim Discount"
-# Primary CTA URL: "{{cta_url}}"
+END. """ 
+    )

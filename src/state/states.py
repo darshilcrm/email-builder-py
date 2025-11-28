@@ -66,6 +66,7 @@ class RowConfig(BaseConfigModel):
     visibility: Optional[str] = None
     column_layout_category: Optional[str] = None
     background_color: str = Field(description="Background color in RGBA You can choose any color of background According to the email template's UI", default="rgba(255,255,255,1)") 
+    background_image: Optional[str] = Field(description="Background image URL Use image_search tool to get image URL", default=None)
 
 class Row(BaseConfigModel):
     id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")

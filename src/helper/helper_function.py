@@ -14,13 +14,13 @@ def apply_default_config_to_dynamic_email(email_json):
 
     for row in output.get("field_list", []):
 
-        temp = {**DEFAULT_ROW_CONFIG, **row['rowConfig']}
+        temp = {**DefaultValues.DEFAULT_ROW_CONFIG, **row['rowConfig']}
         row["rowConfig"] = temp
 
 
         for col in row.get("fieldDetail", []):
 
-            temp =  {**DEFAULT_COL_CONFIG, **col['colConfig']}
+            temp =  {**DefaultValues.DEFAULT_COL_CONFIG, **col['colConfig']}
             col["colConfig"] = temp
 
 
@@ -31,23 +31,23 @@ def apply_default_config_to_dynamic_email(email_json):
                 # TEXT FIELD
                 if field_type == "text" and "text" in field_value:
 
-                    temp = {**DEFAULT_CONFIGURATION, **DEFAULT_TEXT_CONFIG,**field_value["text"]["Configuration"]}
+                    temp = {**DefaultValues.DEFAULT_CONFIGURATION, **DefaultValues.DEFAULT_TEXT_CONFIG,**field_value["text"]["Configuration"]}
                     field_value["text"]["Configuration"] = temp
                     
 
                 # IMAGE FIELD
                 elif field_type == "image" and "img" in field_value:
-                    temp = {**field_value["img"]["Configuration"] , **DEFAULT_CONFIGURATION, **DEFAULT_IMAGE_CONFIG}
+                    temp = {**field_value["img"]["Configuration"] , **DefaultValues.DEFAULT_CONFIGURATION, **DefaultValues.DEFAULT_IMAGE_CONFIG}
                     field_value["img"]["Configuration"] = temp
 
                 # BUTTON FIELD
                 elif field_type == "button" and "button" in field_value:
-                    temp = {**DEFAULT_CONFIGURATION, **DEFAULT_BUTTON_CONFIG,**field_value["button"]["Configuration"]}
+                    temp = {**DefaultValues.DEFAULT_CONFIGURATION, **DefaultValues.DEFAULT_BUTTON_CONFIG,**field_value["button"]["Configuration"]}
                     field_value["button"]["Configuration"] = temp
 
                 # DIVIDER FIELD
                 elif field_type == "divider" and "divider" in field_value:
-                    temp = {**DEFAULT_CONFIGURATION,**DEFAULT_DIVIDER_CONFIG, **field_value["divider"]["Configuration"]}
+                    temp = {**DefaultValues.DEFAULT_CONFIGURATION,**DefaultValues.DEFAULT_DIVIDER_CONFIG, **field_value["divider"]["Configuration"]}
                     field_value["divider"]["Configuration"] = temp
 
     return output
@@ -78,4 +78,4 @@ def image_search(query :str) -> str:
 
     result = response.json()
 
-    return result['results'][0]["urls"]["regular"]
+    return result['results']
