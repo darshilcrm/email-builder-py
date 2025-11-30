@@ -1,6 +1,9 @@
 from enum import Enum
 
-EXAMPLE_JSON_PATH = "example.json"
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+EXAMPLE_JSON_PATH = os.path.join(BASE_DIR, "example.json")
 
 with open(EXAMPLE_JSON_PATH, "r", encoding="utf-8") as f:
     example_json_text = f.read()

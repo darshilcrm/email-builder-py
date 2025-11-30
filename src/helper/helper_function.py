@@ -1,8 +1,12 @@
 import copy
-from src.utils.default_values import *
+from utils.default_values import *
 import os
 from langchain.tools import tool
 import requests
+from dotenv import load_dotenv
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv(os.path.join(BASE_DIR, ".env.local"))
 
 def apply_default_config_to_dynamic_email(email_json):
     """
@@ -72,7 +76,7 @@ def image_search(query :str) -> str:
     """
     Uses Unsplash API to perform an image search and returns the URL of the first image result.
     """
-    access_key = os.getenv("ACCESS_key")
+    access_key = os.getenv("ACCESS_KEY")
 
     response = requests.get(f"https://api.unsplash.com/search/photos?page=1&query={query}&client_id={access_key}")
 
