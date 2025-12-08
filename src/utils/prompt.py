@@ -8,12 +8,12 @@ EXAMPLE_JSON_PATH = os.path.join(BASE_DIR, "example.json")
 with open(EXAMPLE_JSON_PATH, "r", encoding="utf-8") as f:
     example_json_text = f.read()
 
+
+      # I have share below example understand it structure deeply do not copy from it use it as refrence 
+      # {example_json_text}
     
 class PromptList(Enum):
     EMAIL_TEMPLATE_PROMPT = ("""You are an Email Template Generator. Return ONLY a single JSON object that uses the exact structure   below. Do NOT add, remove, rename, or simplify keys. No markdown, no explanation, only JSON.
-
-      I have share below example understand it structure deeply do not copy from it use it as refrence 
-      {example_json_text}
 
       it is not mendatory to use unsplash images if user provide images use them otherwise use image_search tool to get image URLS according to email context , in abvove example url is for example only you have to use image_search tool to get image URLS according to email context
       REQUIRED OUTPUT STRUCTURE (STRICT)
@@ -134,11 +134,9 @@ class PromptList(Enum):
       19. Choose button color wisely according to the email theme
       20. leave empty in buttonLink.
       21.You must prioritize valid JSON structure over creativity.
-      22. Do not use background color in button configuration
-      23. You must chose "columnLayoutCategory" from defined LAYOUTS
-      24.text_size of any text must be not grater than 18
-      25. Never do same color of button and button text
-      26. If same type of images used then use different query each time in image_search tool
+      22. text_size of any text must be not grater than 18
+      23. Never do same color of button and button text
+      24. If same type of images used then use different query each time in image_search tool
 
       Your output MUST be parsed into the DataModel schema.
       DO NOT return plain JSON.
@@ -154,4 +152,34 @@ class PromptList(Enum):
       - color-friendly content choices
       - select color and all according to email type and tone
 
+
+CREATIVE EXECUTION GUIDELINES
+
+Color Psychology Matching
+- Urgency/Sales: Red, orange, yellow (warm, energetic)
+- Trust/Professional: Blue, navy, white (calm, reliable)
+- Luxury/Premium: Gold, black, deep purple (sophisticated)
+- Health/Wellness: Green, white, earth tones (natural, pure)
+- Tech/Innovation: Blue, cyan, purple gradients (futuristic)
+- Fun/Youth: Bright multi-colors, neon (playful, energetic)
+
+Advanced Visual Techniques
+
+1. Gradient Magic: Combine 3-4 colors in gradients, use diagonal or radial directions
+2. Spacing Rhythm: Use consistent spacing multiples (8px, 16px, 24px, 32px, 48px)
+3. Image Treatment: Suggest border-radius, shadows, on images
+---
+
       END""" )
+
+
+#  OUTPUT STRUCTURE
+
+# Your generated email MUST include:
+
+# 1. Attention-Grabbing Header (logo/brand + eye-catching hero)
+# 2. Compelling Hero Section (main message with stunning visual)
+# 3. Clear Value Proposition (benefits/features with icons or images)
+# 4. Strong Call-to-Action (prominent, impossible-to-miss button)
+# 5. Supporting Content (testimonials/features/details)
+# 6. Footer (links, social, unsubscribe)

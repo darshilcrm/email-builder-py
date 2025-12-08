@@ -4,7 +4,6 @@ class DefaultValues:
         "paddingBottom": 5,
         "paddingLeft": 5,
         "paddingRight": 5,
-        "backgroundColor": "white",
         "height": 10,
         "content": "content",
         "vAlign": "top",
@@ -26,7 +25,6 @@ class DefaultValues:
         "paddingBottom": 5,
         "paddingLeft": 5,
         "paddingRight": 5,
-        "backgroundColor": "white",
         "height": 10,
         "content": "content",
         "vAlign": "top",
@@ -49,11 +47,6 @@ class DefaultValues:
         "paddingBottom": 0,
         "paddingLeft": 0,
         "paddingRight": 0,
-        "backgroundColor": "#00000000",
-        "backgroundImage": None,
-        "borderWidth": 0,
-        "borderColor": "#00000000",
-        "borderRadius": 0,
         "align": "col",
         # "maxWidth": 100,
         "borderTopLeft": False,
@@ -89,8 +82,6 @@ class DefaultValues:
         "showFieldLabel": False,
         "showAdditionalFields": False,
         "fieldTextAlignment": "row",
-        "imageRadius": 0,
-        "letterSpacing": 0,
         "imageBackground": "rgba(0,0,0,0)",
         "borderColor": "rgba(0,0,0,0)",
     }
@@ -100,9 +91,9 @@ class DefaultValues:
         "borderRadius": 0,
         "fieldPaddingTop": 0,
         "fieldPaddingBottom": 0,
-        "fontWeight": 400,
-        "borderWidth": 0,
-        "buttonColor": "rgb(56, 98, 206)",
+        # "fontWeight": 400,
+        # "borderWidth": 0,
+        # "buttonColor": "rgb(56, 98, 206)",
         # "align": "left"
         }
 
@@ -117,7 +108,7 @@ class DefaultValues:
         "borderTopLeft": True,
         "borderTopRight": True,
         "borderBottomLeft": True,
-        "borderBottomRight": False
+        "borderBottomRight": True
     }
 
     DEFAULT_BUTTON_CONFIG = {
@@ -126,9 +117,6 @@ class DefaultValues:
         # "borderRadius": 50,
         "fieldPaddingTop": 6,
         "fieldPaddingBottom": 6,
-        "borderColor": "rgb(0, 0, 0)",
-        "borderWidth": 1,
-        "buttonColor": "rgb(255, 255, 255)",
         "buttonLink" : ""
 
     }

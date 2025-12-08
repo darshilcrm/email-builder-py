@@ -15,9 +15,15 @@ class Configuration(BaseConfigModel):
     visibility: Optional[Literal["mobile" , "all" ]] = None
     text_size: int = Field(description="Size of text in pixels", default=16)
     text_color: str = Field(description="Color of the text in RGB or HEX", default="rgb(0, 0, 0)")   
-    button_color : str = Field(description="Color of the button in RGB or HEX")
-    bg_color: Optional[str] = Field(description="Background color in RGBA or HEX", default="rgba(0,0,0,0)")
-    border_radius: Optional[int] = Field(description="Border radius in pixels use this in button only")
+    button_color : str = Field(description="Color of the button in liner-gredient or RGB or HEX")
+    bg_color: str = Field(description="Background color in RGBA or HEX", default="rgba(0,0,0,0)")
+    border_radius: int = Field(description="Border radius in pixels use this in button only" ,default=0)
+    image_radius: int = Field(description="Image radius in pixels use this in image only" ,default=0)
+    latter_spacing: int = Field(description="Latter spacing in pixels use this in text only" ,default=0)
+    border_color: str = Field(description="Border color in RGBA or HEX", default="rgba(0,0,0,0)")
+    border_width: int = Field(description="Border width in pixels", default=0)
+    font_weight: int = Field(description="Font weight in pixels", default=400)
+    
 
 # --- Field Values ---
 class BaseFieldValue(BaseConfigModel):
@@ -56,6 +62,11 @@ class FieldArrayEntry(BaseConfigModel):
 class ColConfig(BaseConfigModel):
     spacing: int = 16
     max_width: int
+    background_color: str = Field(description="Background color in RGBA You can choose any color of background According to the email template's UI", default="rgba(255,255,255,1)")
+    background_image: str = Field(description="Background image URL Use image_search tool to get image URL", default=None)
+    border_color: str = Field(description="Border color in RGBA You can choose any color of border According to the email template's UI", default="rgba(255,255,255,1)")
+    border_radius: int = Field(description="Border radius in pixels", default=0)
+    border_width: int = Field(description="Border width in pixels", default=0)
 
 class FieldDetail(BaseConfigModel):
     id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
@@ -66,7 +77,7 @@ class RowConfig(BaseConfigModel):
     visibility: Optional[str] = None
     column_layout_category: Optional[str] = None
     background_color: str = Field(description="Background color in RGBA You can choose any color of background According to the email template's UI", default="rgba(255,255,255,1)") 
-    background_image: Optional[str] = Field(description="Background image URL Use image_search tool to get image URL", default=None)
+    background_image: str = Field(description="Background image URL Use image_search tool to get image URL", default=None)
 
 class Row(BaseConfigModel):
     id: str =  Field(description="Unique ID comtain random string of 8 characters including numerical and small alphabets and the lenth should be excet 8 characters")
@@ -77,3 +88,4 @@ class DataModel(BaseModel):
     field_list: List[Row]
     name: str = Field(description="Name of the email Template")
     subject: str = Field(description="Subject of the email")
+    background_color: str = Field(description="Background color in RGBA You can choose any color of background According to the email template's UI", default="rgba(255,255,255,1)") 
